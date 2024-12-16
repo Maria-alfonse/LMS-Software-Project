@@ -5,31 +5,46 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Setter
 @Getter
 @RequiredArgsConstructor
 public class Course {
 
+    @Getter
+    @Setter
     public class Assignment {
-
+        private int id;
     }
 
+    @Setter
+    @Getter
     public class Quiz {
-        private List<Question> questions;
+        private int id;
+        private final List<Question> questions = new ArrayList<>();
     }
 
-    @RequiredArgsConstructor
+
+
+
     public class QuestionsBank {
-        private final List<Question> questions;
+        private final List<Question> questions = new ArrayList<>();
     }
 
     private final int id;
-    private final String name;
-    private final List<Integer> enrolledStudent;
+    private final String title;
+    private final String description;
+    private final Integer duration;
     private final Integer instructorId;
-    private final List<Quiz> quizzes;
-    private final List<Assignment> assignments;
+
+    private final List<Integer> enrolledStudent = new ArrayList<>();
+    private final Map<Integer, Quiz> quizzes = new HashMap<>();
+    private final Map<Integer, Assignment> assignments = new HashMap<>();
+    private final Map<Integer, Lesson> lessons = new HashMap<>();
+    private final QuestionsBank questionsBank = new QuestionsBank();
 }
 

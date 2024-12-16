@@ -1,5 +1,6 @@
 package com.example.project.service;
 
+import com.example.project.model.Course.Course;
 import com.example.project.model.Users.Instructor;
 
 public interface InstructorService {
@@ -8,4 +9,5 @@ public interface InstructorService {
     Boolean deleteInstructor(int id);
 
     Instructor getInstructor(int id);
+
 }
