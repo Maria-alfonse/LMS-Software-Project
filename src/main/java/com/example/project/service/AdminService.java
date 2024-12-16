@@ -1,6 +1,6 @@
 package com.example.project.service;
 
-import com.example.project.model.Admin;
+import com.example.project.model.Users.Admin;
 
 public interface AdminService {
     Boolean addAdmin(Admin admin);

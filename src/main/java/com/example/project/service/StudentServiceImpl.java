@@ -1,6 +1,6 @@
 package com.example.project.service;
 
-import com.example.project.model.Student;
+import com.example.project.model.Users.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

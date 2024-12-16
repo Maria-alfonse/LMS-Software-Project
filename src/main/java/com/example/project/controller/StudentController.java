@@ -1,6 +1,6 @@
 package com.example.project.controller;
 
-import com.example.project.model.Student;
+import com.example.project.model.Users.Student;
 import com.example.project.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

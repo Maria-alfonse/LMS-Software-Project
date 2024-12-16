@@ -1,6 +1,6 @@
 package com.example.project.service;
 
-import com.example.project.model.Admin;
+import com.example.project.model.Users.Admin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.example.project.service;
 
-import com.example.project.model.Instructor;
+import com.example.project.model.Users.Instructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

@@ -1,8 +1,8 @@
 package com.example.project.controller;
 
-import com.example.project.model.Admin;
-import com.example.project.model.Instructor;
-import com.example.project.model.Student;
+import com.example.project.model.Users.Admin;
+import com.example.project.model.Users.Instructor;
+import com.example.project.model.Users.Student;
 import com.example.project.service.AdminService;
 import com.example.project.service.StudentService;
 import com.example.project.service.InstructorService;

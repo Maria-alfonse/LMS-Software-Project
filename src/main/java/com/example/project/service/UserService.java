@@ -1,6 +1,6 @@
 package com.example.project.service;
 
-import com.example.project.model.User;
+import com.example.project.model.Users.User;
 
 public interface UserService {
 
