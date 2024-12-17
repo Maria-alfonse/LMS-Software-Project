@@ -16,4 +16,8 @@ public class Question {
     private String question;
 
     private String answer;
+
+    @ManyToOne
+    @JoinColumn(name = "questionsBank_id")
+    private QuestionsBank questionsBank;
 }

@@ -15,7 +15,12 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "Lesson")
+    @ManyToMany
+    @JoinTable(
+            name = "attendance",
+            joinColumns = @JoinColumn(name = "lesson_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
     private List<Student> attendance = new ArrayList<>();
 
     private int OTP;

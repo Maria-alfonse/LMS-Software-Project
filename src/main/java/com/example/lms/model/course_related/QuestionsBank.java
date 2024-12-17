@@ -19,6 +19,6 @@ public class QuestionsBank {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(mappedBy = "QuestionsBank")
+    @OneToMany(mappedBy = "questionsBank")
     private List<Question> questions = new ArrayList<>();
 }
