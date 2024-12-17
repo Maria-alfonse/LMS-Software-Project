@@ -1,12 +1,18 @@
 package com.example.project.model.Users;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
-@Setter
-@Getter
+import lombok.*;
+
+@Data
+@Entity
+@Table(name = "Student")
 public class Student extends User {
     private int grade;
+
+    @ElementCollection
     private List<Integer> registeredCourses;
 }

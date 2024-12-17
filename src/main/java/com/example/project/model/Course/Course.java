@@ -1,50 +1,46 @@
 package com.example.project.model.Course;
 
+import com.example.project.model.Users.Student;
+import jakarta.persistence.*;
 import com.example.project.model.Question.Question;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Setter
-@Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Table (name = "Course")
+@Entity
 public class Course {
 
-    @Getter
-    @Setter
-    public class Assignment {
-        private int id;
-    }
-
-    @Setter
-    @Getter
-    public class Quiz {
-        private int id;
-        private final List<Question> questions = new ArrayList<>();
-    }
 
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
+    private String title;
+    private String description;
+    private Integer duration;
+    private Integer instructorId;
 
-    public class QuestionsBank {
-        private final List<Question> questions = new ArrayList<>();
-    }
+    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> enrolledStudent = new ArrayList<>();
 
-    private final int id;
-    private final String title;
-    private final String description;
-    private final Integer duration;
-    private final Integer instructorId;
+    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Quiz> quizzes = new ArrayList<>();
 
-    private final List<Integer> enrolledStudent = new ArrayList<>();
-    private final Map<Integer, Quiz> quizzes = new HashMap<>();
-    private final Map<Integer, Assignment> assignments = new HashMap<>();
-    private final Map<Integer, Lesson> lessons = new HashMap<>();
-    private final QuestionsBank questionsBank = new QuestionsBank();
+    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Map<Integer, Assignment> assignments = new HashMap<>();
+
+    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Map<Integer, Lesson> lessons = new HashMap<>();
+
+    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL)
+    private QuestionsBank questionsBank;
 }
 

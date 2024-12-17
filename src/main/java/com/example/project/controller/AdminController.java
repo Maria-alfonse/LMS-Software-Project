@@ -17,22 +17,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
-    private final StudentService studentService;
-    private final InstructorService instructorService;
-    private final CourseService courseService;
+//    private final StudentService studentService;
+//    private final InstructorService instructorService;
+//    private final CourseService courseService;
 
     @PostMapping("/admin/create")
     public boolean createAdmin(@RequestBody Admin admin) {
         return adminService.addAdmin(admin);
     }
-
-    @PostMapping("/student/create")
-    public boolean createStudent(@RequestBody Student student){
-        return studentService.addStudent(student);
-    }
-
-    @PostMapping("/instructor/create")
-    public boolean createInstructor(@RequestBody Instructor instructor){
-        return instructorService.addInstructor(instructor);
+//
+//    @PostMapping("/student/create")
+//    public boolean createStudent(@RequestBody Student student){
+//        return studentService.addStudent(student);
+//    }
+//
+//    @PostMapping("/instructor/create")
+//    public boolean createInstructor(@RequestBody Instructor instructor){
+//        return instructorService.addInstructor(instructor);
     }
 }
