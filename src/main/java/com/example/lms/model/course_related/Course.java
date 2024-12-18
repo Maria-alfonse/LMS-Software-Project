@@ -1,10 +1,14 @@
 package com.example.lms.model.course_related;
 
 import com.example.lms.controller.CourseData;
+import com.example.lms.model.course_related.assignment_related.Assignment;
 import com.example.lms.model.user_related.Instructor;
-import com.example.lms.model.user_related.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -43,8 +47,9 @@ public class Course {
 //    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Quiz> quizzes = new ArrayList<>();
 //
-//    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Map<Integer, Assignment> assignments = new HashMap<>();
+    @OneToMany(mappedBy = "course")
+    @JsonManagedReference
+    private List<Assignment> assignments = new ArrayList<>();
 //
 //    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private Map<Integer, Lesson> lessons = new HashMap<>();

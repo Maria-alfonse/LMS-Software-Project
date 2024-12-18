@@ -5,4 +5,8 @@ import com.example.lms.model.course_related.Course;
 
 public interface CourseService {
     Course addCourse(CourseData course);
+
+    Course getCourse(int id);
+
+    void saveCourse(Course course);
 }
