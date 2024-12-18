@@ -17,6 +17,10 @@ public class InstructorServiceImpl implements InstructorService{
 
     @Override
     public Instructor addInstructor(Instructor instructor) {
+        Optional<Instructor> existingInstructor = instructorRepo.findByEmail(instructor.getEmail());
+        if (existingInstructor.isPresent()) {
+            throw new IllegalArgumentException("Instructor with the same email already exists.");
+        }
         return instructorRepo.save(instructor);
     }
 

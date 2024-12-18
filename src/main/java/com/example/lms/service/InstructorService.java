@@ -10,4 +10,5 @@ public interface InstructorService {
     List<Instructor> getAll();
 
     Instructor getInstructor(int id);
+
 }
