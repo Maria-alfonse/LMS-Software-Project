@@ -2,12 +2,14 @@ package com.example.lms.model.course_related;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "QuestionsBank")
 public class QuestionsBank {
 
@@ -21,4 +23,9 @@ public class QuestionsBank {
 
     @OneToMany(mappedBy = "questionsBank")
     private List<Question> questions = new ArrayList<>();
+
+    public QuestionsBank(Course course, List<Question> questions){
+        this.course = course;
+        this.questions = questions;
+    }
 }

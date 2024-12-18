@@ -14,4 +14,6 @@ public class CourseData {
     private Integer duration;
 
     private Integer instructorId;
+
+    private Integer questionBankId;
 }

@@ -39,6 +39,7 @@ public class Course {
         this.description = courseData.getDescription();
         this.duration = courseData.getDuration();
         this.instructor = instructor;
+        this.questionsBank = null;
     }
 
 //    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -54,7 +55,7 @@ public class Course {
 //    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private Map<Integer, Lesson> lessons = new HashMap<>();
 //
-//    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL)
-//    private QuestionsBank questionsBank;
+    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL)
+    private QuestionsBank questionsBank;
 }
 
