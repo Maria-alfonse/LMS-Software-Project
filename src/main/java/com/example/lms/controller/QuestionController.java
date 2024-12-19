@@ -1,31 +1,21 @@
 package com.example.lms.controller;
 
-import com.example.lms.model.course_related.Question;
+import com.example.lms.dto.QuestionData;
 import com.example.lms.service.QuestionService;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/question")
 public class QuestionController {
+
     private final QuestionService questionService;
 
-    @PostMapping("/create")
-    public QuestionData createQuestion(@RequestBody QuestionData question){
-        Question newQuestion = questionService.createQuestion(question);
-        return new QuestionData(newQuestion.getType(), newQuestion.getQuestion(), newQuestion.getAnswer(), question.getQuestionBankId());
-    }
-
-    @GetMapping("/grade/{id}")
-    public Boolean gradeQuestion(@PathVariable("id") int id, @RequestBody String answer){
-        return questionService.gradeQuestion(id, answer);
-    }
-
-    @GetMapping("/{id}")
-    public QuestionData getQuestion(@PathVariable("id") int id){
-        Question newQuestion = questionService.getQuestion(id);
-        return new QuestionData(newQuestion.getType(), newQuestion.getQuestion(), newQuestion.getAnswer(), newQuestion.getQuestionsBank().getId());
+    @PostMapping("/course/{id}/question/add")
+    public QuestionData addQuestion(@PathVariable("id") int id, @RequestBody QuestionData questionData) {
+        return questionService.addQuestion(id, questionData);
     }
 }

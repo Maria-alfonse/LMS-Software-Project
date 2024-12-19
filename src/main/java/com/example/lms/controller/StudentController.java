@@ -1,7 +1,7 @@
 package com.example.lms.controller;
 
 import com.example.lms.model.user_related.Student;
-import com.example.lms.model.user_related.UserData;
+import com.example.lms.dto.UserData;
 import com.example.lms.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

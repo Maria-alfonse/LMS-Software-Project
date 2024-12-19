@@ -1,39 +1,36 @@
 package com.example.lms.service;
 
-import com.example.lms.controller.QuestionData;
-import com.example.lms.model.course_related.Question;
-import com.example.lms.model.course_related.QuestionsBank;
-import com.example.lms.repository.QuestionBankRepo;
+import com.example.lms.dto.QuestionData;
+import com.example.lms.model.course_related.Course;
+import com.example.lms.model.course_related.quiz_related.Question;
 import com.example.lms.repository.QuestionRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService{
 
     private final QuestionRepo questionRepo;
-    private final QuestionBankService questionBankService;
-    @Override
-    public Question createQuestion(QuestionData question){
-        QuestionsBank questionsBank = questionBankService.getQuestionBank(question.getQuestionBankId());
-        Question q = new Question(question, questionBankService.getQuestionBank(questionsBank.getId()));
-        questionsBank.getQuestions().add(q);
-        questionBankService.saveQuestionBank(questionsBank);
-        return questionRepo.save(q);
-    }
+
+    private final CourseService courseService;
 
     @Override
-    public Boolean gradeQuestion(int id, String answer){
-        Optional<Question> question = questionRepo.findById(id);
-        return question.map(value -> value.getAnswer().equals(answer)).orElse(false);
-    }
+    public QuestionData addQuestion(int courseId, QuestionData questionData) {
+        Question question = new Question();
+        question.setType(questionData.getType());
+        question.setQuestion(questionData.getQuestion());
+        question.setAnswer(questionData.getAnswer());
 
-    @Override
-    public Question getQuestion(int id){
-        Optional<Question> q = questionRepo.findById(id);
-        return q.orElse(null);
+        Course course = courseService.getCourse(courseId);
+
+        question.setCourse(course);
+        questionRepo.save(question);
+
+        course.getQuestionBank().add(question);
+        courseService.saveCourse(course);
+
+        questionData.setId(question.getId());
+        return questionData;
     }
 }

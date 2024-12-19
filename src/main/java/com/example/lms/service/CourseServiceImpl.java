@@ -2,7 +2,6 @@ package com.example.lms.service;
 
 import com.example.lms.controller.CourseData;
 import com.example.lms.model.course_related.Course;
-import com.example.lms.model.course_related.QuestionsBank;
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.repository.CourseRepo;
 import lombok.RequiredArgsConstructor;
