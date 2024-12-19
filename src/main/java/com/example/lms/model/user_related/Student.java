@@ -12,5 +12,5 @@ import java.util.List;
 @Data
 @Entity
 public class Student extends User{
-
+ //courses list?
 }

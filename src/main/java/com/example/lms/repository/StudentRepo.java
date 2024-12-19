@@ -1,4 +1,16 @@
 package com.example.lms.repository;
 
-public interface StudentRepo {
+import com.example.lms.model.user_related.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface StudentRepo extends JpaRepository<Student, Integer> {
+    Optional<Student> findByEmail(String email);
+    void deleteById(long id);
+    Optional<Student> findById(long id);
+
 }

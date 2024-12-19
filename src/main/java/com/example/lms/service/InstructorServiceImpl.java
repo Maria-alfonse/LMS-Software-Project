@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -16,7 +17,7 @@ public class InstructorServiceImpl implements InstructorService{
     private final InstructorRepo instructorRepo;
 
     @Override
-    public void deleteInstructor(int id) {
+    public void deleteInstructor(long id) {
         Optional<Instructor> instructor = instructorRepo.findById(id);
         if (instructor.isEmpty()) {
             throw new IllegalArgumentException("Instructor with ID " + id + " does not exist.");
@@ -35,15 +36,32 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public Instructor getInstructor(int id) {
+    public Instructor getInstructor(long id) {
         Optional<Instructor> instructor = instructorRepo.findById(id);
         return instructor.orElse(null);
     }
 
-//    @Override
-//    public void updateInstructor(Instructor instructor) {
-//
-//    }
+    @Override
+    public void updateInstructor(long id, Instructor updatedInstructor) {
+        Optional<Instructor> existingInstructor = instructorRepo.findById(id);
+        if (existingInstructor.isEmpty()) {
+            throw new IllegalArgumentException("Instructor with ID " + id + " does not exist.");
+        }
+
+        if(!Objects.equals(updatedInstructor.getEmail(), existingInstructor.get().getEmail())){
+
+            Optional<Instructor> existingemail = instructorRepo.findByEmail(updatedInstructor.getEmail());
+            if (existingemail.isPresent()) {
+                throw new IllegalArgumentException("Instructor with the same email already exists.");
+            }
+        }
+        Instructor instructor = existingInstructor.get();
+        instructor.setName(updatedInstructor.getName());
+        instructor.setEmail(updatedInstructor.getEmail());
+        instructor.setPassword(updatedInstructor.getPassword());
+
+        instructorRepo.save(instructor);
+    }
 
     @Override
     public List<Instructor> getAll() {

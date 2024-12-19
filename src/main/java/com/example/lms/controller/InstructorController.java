@@ -3,10 +3,7 @@ package com.example.lms.controller;
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.service.InstructorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,11 +17,15 @@ public class InstructorController {
         return instructorService.addInstructor(instructor);
     }
 
-    @PostMapping("/delete/instructor")
-    public void deleteInstructor(@RequestBody Integer id) {
+    @PostMapping("/delete/instructor/{id}")
+    public void deleteInstructor(@PathVariable long id) {
         instructorService.deleteInstructor(id);
     }
 
+    @PostMapping("/update/instructor/{id}")
+    public void updateInstructor(@PathVariable long id, @RequestBody Instructor instructor) {
+        instructorService.updateInstructor(id, instructor);
+    }
 
     @GetMapping("/show/instructors")
     public List<Instructor> getInstructors(){

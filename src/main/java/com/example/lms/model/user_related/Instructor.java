@@ -15,4 +15,5 @@ import java.util.List;
 @DiscriminatorValue("Instructor")
 public class Instructor extends User {
 
+    //courses list?
 }
