@@ -8,9 +8,9 @@ public interface StudentService {
 
     List<Student> getAll();
 
-    Student getStudent(long id);
+    Student getStudent(Integer id);
 
-    void updateStudent(long id, Student student);
+    void updateStudent(Integer id, Student student);
 
-    void deleteStudent(long id);
+    void deleteStudent(Integer id);
 }

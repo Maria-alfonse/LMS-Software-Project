@@ -1,5 +1,6 @@
 package com.example.lms.controller;
 
+import com.example.lms.model.user_related.Admin;
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.service.InstructorService;
 import lombok.RequiredArgsConstructor;
@@ -9,26 +10,29 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/instructor")
 public class InstructorController {
     private final InstructorService instructorService;
 
-    @PostMapping("/add/instructor")
-    public Instructor addInstructor(@RequestBody Instructor instructor){
+    @PostMapping("/add")
+    public Instructor addInstructor(@RequestBody Instructor instructor) {
         return instructorService.addInstructor(instructor);
     }
-
-    @PostMapping("/delete/instructor/{id}")
-    public void deleteInstructor(@PathVariable long id) {
+    @PostMapping("/delete/{id}")
+    public void deleteInstructor(@PathVariable Integer id) {
         instructorService.deleteInstructor(id);
     }
-
-    @PostMapping("/update/instructor/{id}")
-    public void updateInstructor(@PathVariable long id, @RequestBody Instructor instructor) {
+    @PostMapping("/update/{id}")
+    public void updateInstructor(@PathVariable Integer id, @RequestBody Instructor instructor) {
         instructorService.updateInstructor(id, instructor);
     }
+    @GetMapping("/get/{id}")
+    public Instructor getInstructor(@PathVariable Integer id) {
+        return instructorService.getInstructor(id);
+    }
 
-    @GetMapping("/show/instructors")
-    public List<Instructor> getInstructors(){
+    @GetMapping
+    public List<Instructor> getInstructors() {
         return instructorService.getAll();
     }
 }

@@ -9,9 +9,9 @@ public interface InstructorService {
 
     List<Instructor> getAll();
 
-    Instructor getInstructor(long id);
+    Instructor getInstructor(Integer id);
 
-    void updateInstructor(long id, Instructor instructor);
-    void deleteInstructor(long id);
+    void updateInstructor(Integer id, Instructor instructor);
+    void deleteInstructor(Integer id);
 
 }

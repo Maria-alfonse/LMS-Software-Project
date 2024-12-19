@@ -17,14 +17,13 @@ public class InstructorServiceImpl implements InstructorService{
     private final InstructorRepo instructorRepo;
 
     @Override
-    public void deleteInstructor(long id) {
+    public void deleteInstructor(Integer id) {
         Optional<Instructor> instructor = instructorRepo.findById(id);
         if (instructor.isEmpty()) {
             throw new IllegalArgumentException("Instructor with ID " + id + " does not exist.");
         }
         instructorRepo.deleteById(id);
     }
-
 
     @Override
     public Instructor addInstructor(Instructor instructor) {
@@ -36,13 +35,13 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public Instructor getInstructor(long id) {
+    public Instructor getInstructor(Integer id) {
         Optional<Instructor> instructor = instructorRepo.findById(id);
         return instructor.orElse(null);
     }
 
     @Override
-    public void updateInstructor(long id, Instructor updatedInstructor) {
+    public void updateInstructor(Integer id, Instructor updatedInstructor) {
         Optional<Instructor> existingInstructor = instructorRepo.findById(id);
         if (existingInstructor.isEmpty()) {
             throw new IllegalArgumentException("Instructor with ID " + id + " does not exist.");

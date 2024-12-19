@@ -1,5 +1,6 @@
 package com.example.lms.controller;
 
+import com.example.lms.model.user_related.Admin;
 import com.example.lms.model.user_related.Student;
 import com.example.lms.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -8,26 +9,33 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/student")
 public class StudentController {
     private final StudentService studentService;
 
-    @PostMapping("/add/student")
+    @PostMapping("/add")
     public Student addStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
-    @PostMapping("/delete/student")
-    public void deleteStudent(@RequestParam long id) {
+    @PostMapping("/delete/{id}")
+    public void deleteStudent(@PathVariable Integer id) {
         studentService.deleteStudent(id);
     }
 
-    @PostMapping("/update/student/{id}")
-    public void updateStudent(@PathVariable long id, @RequestBody Student student) {
+    @PostMapping("/update/{id}")
+    public void updateStudent(@PathVariable Integer id, @RequestBody Student student) {
         studentService.updateStudent(id, student);
     }
+    @GetMapping("/get/{id}")
+    public Student getStudent(@PathVariable Integer id) {
+        return studentService.getStudent(id);
+    }
 
-    @GetMapping("/show/student")
+
+    @GetMapping
     public List<Student> getAllStudents() {
         return studentService.getAll();
     }
+
 }

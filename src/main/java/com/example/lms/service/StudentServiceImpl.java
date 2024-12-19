@@ -24,7 +24,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudent(long id) {
+    public void deleteStudent(Integer id) {
         Optional<Student> student = studentRepo.findById(id);
         if (student.isEmpty()) {
             throw new IllegalArgumentException("Student with ID " + id + " does not exist.");
@@ -33,13 +33,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudent(long id) {
+    public Student getStudent(Integer id) {
         Optional<Student> student = studentRepo.findById(id);
         return student.orElse(null);
     }
 
     @Override
-    public void updateStudent(long id, Student updatedStudent) {
+    public void updateStudent(Integer id, Student updatedStudent) {
         Optional<Student> existingStudent = studentRepo.findById(id);
         if (existingStudent.isEmpty()) {
             throw new IllegalArgumentException("Student with ID " + id + " does not exist.");
