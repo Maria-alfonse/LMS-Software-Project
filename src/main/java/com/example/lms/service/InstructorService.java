@@ -11,4 +11,7 @@ public interface InstructorService {
 
     Instructor getInstructor(int id);
 
+   // void updateInstructor(Instructor instructor);
+    void deleteInstructor(int id);
+
 }

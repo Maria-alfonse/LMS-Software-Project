@@ -16,6 +16,16 @@ public class InstructorServiceImpl implements InstructorService{
     private final InstructorRepo instructorRepo;
 
     @Override
+    public void deleteInstructor(int id) {
+        Optional<Instructor> instructor = instructorRepo.findById(id);
+        if (instructor.isEmpty()) {
+            throw new IllegalArgumentException("Instructor with ID " + id + " does not exist.");
+        }
+        instructorRepo.deleteById(id);
+    }
+
+
+    @Override
     public Instructor addInstructor(Instructor instructor) {
         Optional<Instructor> existingInstructor = instructorRepo.findByEmail(instructor.getEmail());
         if (existingInstructor.isPresent()) {
@@ -29,6 +39,11 @@ public class InstructorServiceImpl implements InstructorService{
         Optional<Instructor> instructor = instructorRepo.findById(id);
         return instructor.orElse(null);
     }
+
+//    @Override
+//    public void updateInstructor(Instructor instructor) {
+//
+//    }
 
     @Override
     public List<Instructor> getAll() {

@@ -15,12 +15,18 @@ import java.util.List;
 public class InstructorController {
     private final InstructorService instructorService;
 
-    @PostMapping("/instructor/add")
+    @PostMapping("/add/instructor")
     public Instructor addInstructor(@RequestBody Instructor instructor){
         return instructorService.addInstructor(instructor);
     }
 
-    @GetMapping("/instructor")
+    @PostMapping("/delete/instructor")
+    public void deleteInstructor(@RequestBody Integer id) {
+        instructorService.deleteInstructor(id);
+    }
+
+
+    @GetMapping("/show/instructors")
     public List<Instructor> getInstructors(){
         return instructorService.getAll();
     }
