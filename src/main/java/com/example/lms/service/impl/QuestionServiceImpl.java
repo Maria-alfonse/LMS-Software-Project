@@ -1,15 +1,17 @@
-package com.example.lms.service;
+package com.example.lms.service.impl;
 
 import com.example.lms.dto.QuestionData;
 import com.example.lms.model.course_related.Course;
 import com.example.lms.model.course_related.quiz_related.Question;
 import com.example.lms.repository.QuestionRepo;
+import com.example.lms.service.CourseService;
+import com.example.lms.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class QuestionServiceImpl implements QuestionService{
+public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepo questionRepo;
 

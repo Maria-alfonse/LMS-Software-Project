@@ -1,15 +1,17 @@
-package com.example.lms.service;
+package com.example.lms.service.impl;
 
 import com.example.lms.controller.CourseData;
 import com.example.lms.model.course_related.Course;
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.repository.CourseRepo;
+import com.example.lms.service.CourseService;
+import com.example.lms.service.InstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CourseServiceImpl implements CourseService{
+public class CourseServiceImpl implements CourseService {
 
     private final CourseRepo courseRepo;
 

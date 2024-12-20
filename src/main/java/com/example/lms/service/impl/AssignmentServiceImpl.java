@@ -1,4 +1,4 @@
-package com.example.lms.service;
+package com.example.lms.service.impl;
 
 import com.example.lms.model.course_related.FileEntity;
 import com.example.lms.model.course_related.assignment_related.Assignment;
@@ -8,6 +8,10 @@ import com.example.lms.dto.SubmissionResponse;
 import com.example.lms.model.user_related.Student;
 import com.example.lms.repository.AssignmentRepo;
 import com.example.lms.repository.AssignmentSubmissionRepo;
+import com.example.lms.service.AssignmentService;
+import com.example.lms.service.CourseService;
+import com.example.lms.service.FileService;
+import com.example.lms.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AssignmentServiceImpl implements AssignmentService{
+public class AssignmentServiceImpl implements AssignmentService {
     private final AssignmentRepo assignmentRepo;
 
     private final CourseService courseService;

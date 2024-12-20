@@ -1,7 +1,8 @@
-package com.example.lms.service;
+package com.example.lms.service.impl;
 
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.repository.InstructorRepo;
+import com.example.lms.service.InstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class InstructorServiceImpl implements InstructorService{
+public class InstructorServiceImpl implements InstructorService {
 
     private final InstructorRepo instructorRepo;
 

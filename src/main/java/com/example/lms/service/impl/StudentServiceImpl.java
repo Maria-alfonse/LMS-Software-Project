@@ -1,14 +1,15 @@
-package com.example.lms.service;
+package com.example.lms.service.impl;
 
 import com.example.lms.model.user_related.Student;
 import com.example.lms.dto.UserData;
 import com.example.lms.repository.StudentRepo;
+import com.example.lms.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
     private final StudentRepo studentRepo;
 
     @Override
