@@ -9,4 +9,11 @@ public interface CourseService {
     Course getCourse(int id);
 
     void saveCourse(Course course);
+    
+    void deleteCourse(Integer id);
+
+    void updateCourse(CourseData course);
+
+    //create delete update display
+
 }
