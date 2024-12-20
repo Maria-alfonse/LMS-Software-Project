@@ -1,5 +1,6 @@
-package com.example.lms.model.user_related;
+package com.example.lms.dto;
 
+import com.example.lms.model.user_related.User;
 import lombok.Getter;
 import lombok.Setter;
 

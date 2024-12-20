@@ -1,7 +1,7 @@
 package com.example.lms.service;
 
 import com.example.lms.model.user_related.Student;
-import com.example.lms.model.user_related.UserData;
+import com.example.lms.dto.UserData;
 import com.example.lms.repository.StudentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

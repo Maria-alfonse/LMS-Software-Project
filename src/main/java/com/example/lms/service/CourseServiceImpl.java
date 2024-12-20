@@ -17,7 +17,6 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public Course addCourse(CourseData course) {
         Instructor instructor = instructorService.getInstructor(course.getInstructorId());
-
         Course newCourse = new Course(course, instructor);
 
         return courseRepo.save(newCourse);

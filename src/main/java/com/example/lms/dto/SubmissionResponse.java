@@ -1,6 +1,7 @@
-package com.example.lms.model.course_related.assignment_related;
+package com.example.lms.dto;
 
 import com.example.lms.model.course_related.FileEntity;
+import com.example.lms.model.course_related.assignment_related.AssignmentSubmission;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
