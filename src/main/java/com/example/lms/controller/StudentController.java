@@ -18,12 +18,12 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteStudent(@PathVariable Integer id) {
         studentService.deleteStudent(id);
     }
 
-    @PostMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public void updateStudent(@PathVariable Integer id, @RequestBody Student student) {
         studentService.updateStudent(id, student);
     }

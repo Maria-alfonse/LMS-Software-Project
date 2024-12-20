@@ -18,7 +18,7 @@ public class AdminController {
         return adminService.addAdmin(admin);
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteAdmin(@PathVariable Integer id) {
         adminService.deleteAdmin(id);
     }
@@ -33,12 +33,8 @@ public class AdminController {
         return adminService.getAll();
     }
 
-    @PostMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public void updateAdmin(@PathVariable Integer id, @RequestBody Admin admin) {
         adminService.updateAdmin(id,admin);
     }
-
-
-
-
 }

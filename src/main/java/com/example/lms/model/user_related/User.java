@@ -1,5 +1,6 @@
 package com.example.lms.model.user_related;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class User {
     //    @Column(nullable = false)
     private String name;
 
-    @JsonIgnore
+    @JsonBackReference
     private String password;
 
     //    @Column(nullable = false, unique = true)

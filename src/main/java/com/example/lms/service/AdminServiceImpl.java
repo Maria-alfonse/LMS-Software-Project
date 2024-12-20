@@ -49,11 +49,16 @@ public class AdminServiceImpl implements AdminService {
         Admin existingAdmin = adminRepo.findById((int) id)
                 .orElseThrow(() -> new IllegalArgumentException("Admin with Id  " + id + " does not exist."));
 
-        existingAdmin.setEmail(updatedAdmin.getEmail());
-        existingAdmin.setName(updatedAdmin.getName());
-        existingAdmin.setPassword(updatedAdmin.getPassword());
-        adminRepo.save(existingAdmin);
+        if (updatedAdmin.getEmail() != null)
+            existingAdmin.setEmail(updatedAdmin.getEmail());
 
+        if (updatedAdmin.getName() != null)
+            existingAdmin.setName(updatedAdmin.getName());
+
+        if (updatedAdmin.getPassword() != null)
+            existingAdmin.setPassword(updatedAdmin.getPassword());
+
+        adminRepo.save(existingAdmin);
     }
 
     @Override

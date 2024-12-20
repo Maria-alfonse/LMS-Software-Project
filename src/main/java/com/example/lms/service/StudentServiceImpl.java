@@ -53,9 +53,15 @@ public class StudentServiceImpl implements StudentService {
         }
 
         Student student = existingStudent.get();
-        student.setName(updatedStudent.getName());
-        student.setEmail(updatedStudent.getEmail());
-        student.setPassword(updatedStudent.getPassword());
+
+        if (updatedStudent.getName() != null)
+            student.setName(updatedStudent.getName());
+
+        if (updatedStudent.getEmail() != null)
+            student.setEmail(updatedStudent.getEmail());
+
+        if (updatedStudent.getPassword() != null)
+            student.setPassword(updatedStudent.getPassword());
 
         studentRepo.save(student);
     }
