@@ -2,12 +2,10 @@ package com.example.lms.controller;
 
 import com.example.lms.dto.QuizData;
 import com.example.lms.dto.QuizSubmissionData;
+import com.example.lms.model.course_related.quiz_related.QuizSubmission;
 import com.example.lms.service.QuizService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,12 @@ public class QuizController {
 
     @PostMapping("/quiz/{id}/submit")
     public QuizSubmissionData submitQuiz(@PathVariable("id") int id, @RequestBody List<String> answers) {
-        return quizService.submitQuiz(53, id, answers);
+        return quizService.submitQuiz(152, id, answers);
     }
+
+    @GetMapping("/quiz/{id}/submissions")
+    public List<QuizSubmission> getSubmissions(@PathVariable("id") int id) {
+        return quizService.getSubmissions(id);
+    }
+
 }
