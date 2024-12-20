@@ -18,11 +18,11 @@ public class InstructorController {
     public Instructor addInstructor(@RequestBody Instructor instructor) {
         return instructorService.addInstructor(instructor);
     }
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteInstructor(@PathVariable Integer id) {
         instructorService.deleteInstructor(id);
     }
-    @PostMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public void updateInstructor(@PathVariable Integer id, @RequestBody Instructor instructor) {
         instructorService.updateInstructor(id, instructor);
     }
