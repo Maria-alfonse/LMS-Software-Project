@@ -33,7 +33,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudent(Integer id) {
+    public Student getStudent(int id) {
         Optional<Student> student = studentRepo.findById(id);
         return student.orElse(null);
     }
