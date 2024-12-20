@@ -55,9 +55,12 @@ public class InstructorServiceImpl implements InstructorService{
             }
         }
         Instructor instructor = existingInstructor.get();
-        instructor.setName(updatedInstructor.getName());
-        instructor.setEmail(updatedInstructor.getEmail());
-        instructor.setPassword(updatedInstructor.getPassword());
+        if(updatedInstructor.getName() != null)
+            instructor.setName(updatedInstructor.getName());
+        if(updatedInstructor.getEmail() != null)
+            instructor.setEmail(updatedInstructor.getEmail());
+        if(updatedInstructor.getPassword() != null)
+            instructor.setPassword(updatedInstructor.getPassword());
 
         instructorRepo.save(instructor);
     }
