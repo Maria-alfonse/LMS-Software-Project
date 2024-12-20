@@ -14,4 +14,7 @@ public class FileEntity {
     private String type;
 
     private String path;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 }

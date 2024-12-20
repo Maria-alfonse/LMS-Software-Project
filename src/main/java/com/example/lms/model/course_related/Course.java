@@ -50,6 +50,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     @JsonManagedReference
     private List<Assignment> assignments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<FileEntity> files;
 //
 //    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private Map<Integer, Lesson> lessons = new HashMap<>();
