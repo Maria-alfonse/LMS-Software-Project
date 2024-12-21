@@ -1,6 +1,6 @@
 package com.example.lms.service.impl;
 
-import com.example.lms.dao.request.SignInRequest;
+import com.example.lms.model.user_related.User;
 import com.example.lms.repository.UserRepo;
 import com.example.lms.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,12 @@ public class UserServiceImpl implements UserService {
                 return userRepo.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
             }
         };
+    }
+
+    @Override
+    public User getUser(int id){
+        Optional<com.example.lms.model.user_related.User> user = userRepo.findById(id);
+        return user.orElse(null);
     }
 
 }

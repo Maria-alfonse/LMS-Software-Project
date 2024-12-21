@@ -28,6 +28,10 @@ public class JwtServiceImpl implements JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
+    }
+
     @Override
     public String generateToken(UserDetails userDetails){
             return generateToken(new HashMap<>(), userDetails);
@@ -55,8 +59,8 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        extraClaims.put("role", ((User) userDetails).getRole().name());
-        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
+//        extraClaims.put("role", ((User) userDetails).getRole().name());
+        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername()).claim("role", ((User) userDetails).getRole().name())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 60 * 14))
                 .signWith(getSigningKeys(), SignatureAlgorithm.HS256).compact();

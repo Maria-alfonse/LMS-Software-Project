@@ -17,7 +17,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('INSTRUCTOR')")
     public Course addCourse(@RequestBody CourseData course){
         return courseService.addCourse(course);
     }
