@@ -7,4 +7,6 @@ public interface UserService {
     UserDetailsService userDetailsService();
 
     User getUser(int id);
+
+    User getUserByEmail(String email);
 }

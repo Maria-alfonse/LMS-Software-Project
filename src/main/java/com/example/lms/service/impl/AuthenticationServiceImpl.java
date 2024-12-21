@@ -3,6 +3,7 @@ package com.example.lms.service.impl;
 import com.example.lms.dao.request.SignInRequest;
 import com.example.lms.dao.request.SignUpRequest;
 import com.example.lms.dao.response.JwtAuthenticationResponse;
+import com.example.lms.model.user_related.Admin;
 import com.example.lms.model.user_related.Role;
 import com.example.lms.model.user_related.User;
 import com.example.lms.repository.UserRepo;

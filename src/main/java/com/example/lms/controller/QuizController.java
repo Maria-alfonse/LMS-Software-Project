@@ -24,7 +24,8 @@ public class QuizController {
 
     private final QuizService quizService;
     private final JwtService jwtService;
-    private final UserRepo userRepo;
+
+    private final UserService userService;
 
     @PostMapping("/course/{id}/quiz/add")
     @PreAuthorize("hasAuthority('INSTRUCTOR')")
@@ -38,9 +39,10 @@ public class QuizController {
         String authHeader = request.getHeader("Authorization");
         String token = authHeader.substring(7);
         String email = jwtService.extractUserName(token);
-        Optional<User> user = userRepo.findByEmail(email);
-        if(user.isPresent()){
-            int studentId = user.get().getId();
+        User user = userService.getUserByEmail(email);
+        if(user != null){
+            int studentId = user.getId();
+            System.out.println(studentId);
             return quizService.submitQuiz(studentId, id, answers);
         }
         return null;
