@@ -4,6 +4,7 @@ import com.example.lms.model.user_related.Admin;
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.service.InstructorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class InstructorController {
     private final InstructorService instructorService;
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Instructor addInstructor(@RequestBody Instructor instructor) {
         return instructorService.addInstructor(instructor);
     }

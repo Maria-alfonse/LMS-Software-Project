@@ -28,6 +28,7 @@ public class AdminController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Admin addAdmin(@RequestBody Admin admin) {
         return adminService.addAdmin(admin);
     }
