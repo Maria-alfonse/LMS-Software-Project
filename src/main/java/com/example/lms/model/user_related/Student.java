@@ -4,6 +4,8 @@ import com.example.lms.model.course_related.Lesson;
 import com.example.lms.model.course_related.assignment_related.AssignmentSubmission;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.lms.model.course_related.quiz_related.QuizSubmission;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Data
 @Entity
 public class Student extends User{
+    @JsonBackReference
     @OneToMany(mappedBy = "student")
     private List<AssignmentSubmission> submissions = new ArrayList<>();
 
@@ -30,5 +33,8 @@ public class Student extends User{
         return lessonIds;
     }
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuizSubmission> quizSubmissions = new ArrayList<>();
 
 }

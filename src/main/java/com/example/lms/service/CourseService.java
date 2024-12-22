@@ -14,8 +14,17 @@ public interface CourseService {
     Course getCourse(int id);
 
     void saveCourse(Course course);
+  
     FileEntity uploadFile(int courseId, MultipartFile file) throws IOException;
+  
     List<Course> getAllCourses();
+  
     Course getCourseById( int id);
-    String enrollInCourse(int studentId, int courseId) ;
+  
+    String enrollInCourse(int studentId, int courseId);
+    
+    void deleteCourse(Integer id);
+
+    void updateCourse(CourseData course);
+
 }

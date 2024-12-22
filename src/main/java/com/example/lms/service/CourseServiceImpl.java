@@ -30,9 +30,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course addCourse(CourseData course) {
         Instructor instructor = instructorService.getInstructor(course.getInstructorId());
-
         Course newCourse = new Course(course, instructor);
-
         return courseRepo.save(newCourse);
     }
 
@@ -60,7 +58,7 @@ public class CourseServiceImpl implements CourseService {
     private StudentRepo studentRepo;
     @Autowired
     private NotificationService notificationService;
-@Override
+    @Override
     public String enrollInCourse(int studentId, int courseId) {
         Student student = studentRepo.findById(studentId).orElseThrow(() -> new IllegalArgumentException("Student not found"));
         Course course = courseRepo.findById(courseId).orElseThrow(() -> new IllegalArgumentException("Course not found"));
@@ -96,4 +94,13 @@ public class CourseServiceImpl implements CourseService {
 
         return fileEntity;
     }
+    public void deleteCourse(Integer id) {
+
+    }
+
+    @Override
+    public void updateCourse(CourseData course) {
+
+    }
+
 }

@@ -1,8 +1,7 @@
 package com.example.lms.service;
 
 import com.example.lms.model.course_related.assignment_related.Assignment;
-import com.example.lms.model.course_related.assignment_related.AssignmentSubmission;
-import com.example.lms.model.course_related.assignment_related.SubmissionResponse;
+import com.example.lms.dto.SubmissionResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

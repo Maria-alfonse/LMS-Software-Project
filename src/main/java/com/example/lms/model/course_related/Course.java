@@ -2,6 +2,8 @@ package com.example.lms.model.course_related;
 
 import com.example.lms.controller.CourseData;
 import com.example.lms.model.course_related.assignment_related.Assignment;
+import com.example.lms.model.course_related.quiz_related.Question;
+import com.example.lms.model.course_related.quiz_related.Quiz;
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.model.user_related.Student;
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -24,7 +26,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "description")
@@ -33,7 +35,7 @@ public class Course {
     @Column(name = "duration")
     private Integer duration;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
@@ -47,12 +49,15 @@ public class Course {
 //    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Student> enrolledStudent = new ArrayList<>();
 //
-//    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Quiz> quizzes = new ArrayList<>();
-//
     @OneToMany(mappedBy = "course")
     @JsonManagedReference
     private List<Assignment> assignments = new ArrayList<>();
+  
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Question> questionBank = new ArrayList<>();
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Quiz> quizzes = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -78,13 +83,5 @@ public class Course {
         }
         return lessonIds;
     }
-
-
-//
-//    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Map<Integer, Lesson> lessons = new HashMap<>();
-//
-//    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL)
-//    private QuestionsBank questionsBank;
 }
 
