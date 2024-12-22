@@ -1,7 +1,8 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 
 import com.example.lms.model.user_related.Admin;
 import com.example.lms.repository.AdminRepo;
+import com.example.lms.service.AdminService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

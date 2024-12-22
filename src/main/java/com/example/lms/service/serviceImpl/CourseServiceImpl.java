@@ -1,4 +1,4 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 
 import com.example.lms.controller.CourseData;
 import com.example.lms.model.course_related.Course;
@@ -7,6 +7,7 @@ import com.example.lms.model.user_related.Instructor;
 import com.example.lms.model.user_related.Student;
 import com.example.lms.repository.CourseRepo;
 import com.example.lms.repository.FileRepo;
+import com.example.lms.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,10 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CourseServiceImpl implements CourseService{
+public class CourseServiceImpl implements CourseService {
 
     private final CourseRepo courseRepo;
 
@@ -50,12 +52,25 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public void deleteCourse(Integer id) {
-
+        courseRepo.findById(id).ifPresent(courseRepo::delete);
     }
 
     @Override
-    public void updateCourse(CourseData course) {
+    public Course updateCourse(int courseId, CourseData course) {
+        Course newCourse = courseRepo.findById(courseId).orElse(null);
+        if(newCourse != null){
+            if(course.getTitle() != null)
+                newCourse.setTitle(course.getTitle());
+            if(course.getDescription() != null)
+                newCourse.setDescription(course.getDescription());
+            if(course.getDuration() != null)
+                newCourse.setDuration(course.getDuration());
+            if(course.getInstructorId() != null)
+                newCourse.setInstructor(instructorService.getInstructor(course.getInstructorId()));
 
+            return courseRepo.save(newCourse);
+        }
+        return null;
     }
 
     @Override

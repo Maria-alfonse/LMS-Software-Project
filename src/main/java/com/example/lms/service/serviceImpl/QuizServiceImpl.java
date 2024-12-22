@@ -1,4 +1,4 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 
 import com.example.lms.dto.QuestionData;
 import com.example.lms.dto.QuizData;
@@ -10,6 +10,9 @@ import com.example.lms.model.course_related.quiz_related.QuizSubmission;
 import com.example.lms.model.user_related.Student;
 import com.example.lms.repository.QuizRepo;
 import com.example.lms.repository.QuizSubmissionRepo;
+import com.example.lms.service.CourseService;
+import com.example.lms.service.QuizService;
+import com.example.lms.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

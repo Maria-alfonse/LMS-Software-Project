@@ -17,7 +17,7 @@ public interface CourseService {
     
     void deleteCourse(Integer id);
 
-    void updateCourse(CourseData course);
+    Course updateCourse(int courseId, CourseData course);
 
     FileEntity uploadFile(int courseId, MultipartFile file) throws IOException;
 

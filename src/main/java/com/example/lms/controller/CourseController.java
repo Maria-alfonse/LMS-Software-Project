@@ -22,7 +22,7 @@ public class CourseController {
         return courseService.addCourse(course);
     }
 
-    @PostMapping("/{id}/uploadFile")
+    @PostMapping("/{id}/upload_file")
     public FileEntity uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file) throws IOException {
         return courseService.uploadFile(id, file);
     }
@@ -40,5 +40,15 @@ public class CourseController {
     @PostMapping("/{courseId}/enroll")
     public String enrollInCourse(@RequestBody int studentId, @PathVariable int courseId) {
         return courseService.enrollInCourse(studentId, courseId);
+    }
+
+    @DeleteMapping("/{courseId}/delete")
+    public void deleteCourse(@PathVariable("courseId") int courseId){
+        courseService.deleteCourse(courseId);
+    }
+
+    @PatchMapping("{courseId}/update")
+    public Course updateCourse(@PathVariable int courseId, @RequestBody CourseData courseData){
+        return courseService.updateCourse(courseId, courseData);
     }
 }

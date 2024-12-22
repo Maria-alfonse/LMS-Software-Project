@@ -1,8 +1,9 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 
 import com.example.lms.model.Notification;
 import com.example.lms.model.user_related.User;
 import com.example.lms.repository.NotificationRepo;
+import com.example.lms.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

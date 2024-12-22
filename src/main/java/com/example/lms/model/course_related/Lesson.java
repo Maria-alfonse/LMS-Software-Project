@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "Lesson")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") // استخدم id كمفتاح فريد
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 public class Lesson {
     @Id

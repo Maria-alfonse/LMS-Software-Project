@@ -1,4 +1,4 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 
 import com.example.lms.model.course_related.Course;
 import com.example.lms.model.course_related.Lesson;
@@ -6,6 +6,8 @@ import com.example.lms.model.user_related.Student;
 import com.example.lms.repository.CourseRepo;
 import com.example.lms.repository.LessonRepo;
 import com.example.lms.repository.StudentRepo;
+import com.example.lms.service.LessonService;
+import com.example.lms.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

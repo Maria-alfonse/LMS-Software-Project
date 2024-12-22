@@ -1,7 +1,8 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 
 import com.example.lms.model.user_related.Student;
 import com.example.lms.repository.StudentRepo;
+import com.example.lms.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

@@ -1,6 +1,7 @@
-package com.example.lms.service;
+package com.example.lms.service.serviceImpl;
 import com.example.lms.model.course_related.FileEntity;
 import com.example.lms.repository.FileRepo;
+import com.example.lms.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
