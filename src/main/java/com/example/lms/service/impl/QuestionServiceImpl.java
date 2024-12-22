@@ -1,4 +1,4 @@
-package com.example.lms.service.serviceImpl;
+package com.example.lms.service.impl;
 
 import com.example.lms.dto.QuestionData;
 import com.example.lms.model.course_related.Course;

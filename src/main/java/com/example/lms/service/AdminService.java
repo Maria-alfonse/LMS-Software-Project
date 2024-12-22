@@ -1,6 +1,7 @@
 package com.example.lms.service;
 
 import com.example.lms.model.user_related.Admin;
+import com.example.lms.model.user_related.User;
 
 import java.util.List;
 
@@ -19,5 +20,7 @@ public interface AdminService {
     void updateAdmin(Integer id,Admin admin);
 
 
-    List<Admin>getAll();
+    List<Admin> getAll();
+    
+    User setUserRole(int userId, String roleName);
 }

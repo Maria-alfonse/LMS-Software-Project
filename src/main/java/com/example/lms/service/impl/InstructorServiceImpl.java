@@ -1,4 +1,4 @@
-package com.example.lms.service.serviceImpl;
+package com.example.lms.service.impl;
 
 import com.example.lms.model.user_related.Instructor;
 import com.example.lms.repository.InstructorRepo;

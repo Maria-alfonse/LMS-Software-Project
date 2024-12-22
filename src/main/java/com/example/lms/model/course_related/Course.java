@@ -1,6 +1,6 @@
 package com.example.lms.model.course_related;
 
-import com.example.lms.controller.CourseData;
+import com.example.lms.dto.CourseData;
 import com.example.lms.model.course_related.assignment_related.Assignment;
 import com.example.lms.model.course_related.quiz_related.Question;
 import com.example.lms.model.course_related.quiz_related.Quiz;

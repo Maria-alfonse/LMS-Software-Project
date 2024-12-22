@@ -22,7 +22,7 @@ public class Instructor extends User {
     //courses list?
     @OneToMany(mappedBy = "instructor")
     @JsonIgnore
-    private List<Course> course;
+    private List<Course> course = new ArrayList<>();
 
     @JsonGetter("Courses")
     public Map<Integer, String> getCourses(){

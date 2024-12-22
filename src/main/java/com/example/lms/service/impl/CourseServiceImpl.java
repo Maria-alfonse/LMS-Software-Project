@@ -1,6 +1,6 @@
-package com.example.lms.service.serviceImpl;
+package com.example.lms.service.impl;
 
-import com.example.lms.controller.CourseData;
+import com.example.lms.dto.CourseData;
 import com.example.lms.model.course_related.Course;
 import com.example.lms.model.course_related.FileEntity;
 import com.example.lms.model.user_related.Instructor;
