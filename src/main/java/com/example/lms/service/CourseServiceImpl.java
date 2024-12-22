@@ -19,13 +19,14 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class CourseServiceImpl implements CourseService{
+public class CourseServiceImpl implements CourseService {
 
     private final CourseRepo courseRepo;
 
     private final InstructorService instructorService;
     private final FileService fileService;
     private final FileRepo fileRepo;
+
     @Override
     public Course addCourse(CourseData course) {
         Instructor instructor = instructorService.getInstructor(course.getInstructorId());
@@ -57,7 +58,9 @@ public class CourseServiceImpl implements CourseService{
 
     @Autowired
     private StudentRepo studentRepo;
-
+    @Autowired
+    private NotificationService notificationService;
+@Override
     public String enrollInCourse(int studentId, int courseId) {
         Student student = studentRepo.findById(studentId).orElseThrow(() -> new IllegalArgumentException("Student not found"));
         Course course = courseRepo.findById(courseId).orElseThrow(() -> new IllegalArgumentException("Course not found"));
@@ -65,11 +68,19 @@ public class CourseServiceImpl implements CourseService{
         if (course.getStudents().contains(student)) {
             return "Student is already enrolled in this course.";
         }
-
         course.getStudents().add(student);
         courseRepo.save(course);
+
+        notificationService.sendNotification(student, "You have successfully enrolled in the course: " + course.getTitle());
+
+        Instructor instructor = course.getInstructor();
+        if (instructor != null) {
+            notificationService.sendNotification(instructor, "Student " + student.getName() + " has enrolled in your course: " + course.getTitle());
+        }
+
         return "Student successfully enrolled in the course.";
     }
+
 
     @Override
     public FileEntity uploadFile(int courseId, MultipartFile file) throws IOException {
@@ -85,5 +96,4 @@ public class CourseServiceImpl implements CourseService{
 
         return fileEntity;
     }
-
 }
