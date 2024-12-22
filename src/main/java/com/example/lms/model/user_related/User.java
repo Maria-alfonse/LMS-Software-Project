@@ -1,5 +1,7 @@
 package com.example.lms.model.user_related;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +27,8 @@ public class User implements UserDetails{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String name;
+
+    @JsonBackReference
     private String password;
     private String email;
     @Enumerated(EnumType.STRING)
@@ -60,6 +64,7 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
+
 
 
 }

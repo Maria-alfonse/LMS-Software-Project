@@ -5,15 +5,13 @@ import com.example.lms.dto.QuizSubmissionData;
 import com.example.lms.model.user_related.User;
 import com.example.lms.repository.UserRepo;
 import com.example.lms.service.JwtService;
+import com.example.lms.model.course_related.quiz_related.QuizSubmission;
 import com.example.lms.service.QuizService;
 import com.example.lms.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,4 +45,10 @@ public class QuizController {
         }
         return null;
     }
+
+    @GetMapping("/quiz/{id}/submissions")
+    public List<QuizSubmission> getSubmissions(@PathVariable("id") int id) {
+        return quizService.getSubmissions(id);
+    }
+
 }

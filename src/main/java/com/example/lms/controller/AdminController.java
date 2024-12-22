@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -23,5 +24,30 @@ public class AdminController {
         System.out.println("The role is: " + role);
         User user = adminService.setUserRole(id, role.toUpperCase());
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/add")
+    public Admin addAdmin(@RequestBody Admin admin) {
+        return adminService.addAdmin(admin);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteAdmin(@PathVariable Integer id) {
+        adminService.deleteAdmin(id);
+    }
+
+    @GetMapping("/get/{id}")
+    public Admin getAdmin(@PathVariable Integer id) {
+        return adminService.getAdmin(id);
+    }
+
+    @GetMapping
+    public List<Admin> getAllAdmin() {
+        return adminService.getAll();
+    }
+
+    @PatchMapping("/update/{id}")
+    public void updateAdmin(@PathVariable Integer id, @RequestBody Admin admin) {
+        adminService.updateAdmin(id,admin);
     }
 }
