@@ -1,4 +1,4 @@
-package com.example.lms.service.serviceImpl;
+package com.example.lms.service.impl;
 
 import com.example.lms.model.Notification;
 import com.example.lms.model.user_related.User;

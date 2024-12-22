@@ -1,5 +1,6 @@
 package com.example.lms.controller;
 
+import com.example.lms.model.user_related.Admin;
 import com.example.lms.model.user_related.User;
 import com.example.lms.service.AdminService;
 import lombok.RequiredArgsConstructor;

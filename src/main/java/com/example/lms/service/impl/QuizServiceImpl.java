@@ -101,4 +101,14 @@ public class QuizServiceImpl implements QuizService {
 
         return qsd;
     }
+
+    @Override
+    public List<QuizSubmission> getSubmissions(int id) {
+        Quiz quiz = quizRepo.findById(id).orElse(null);
+
+        if (quiz == null)
+            return null;
+
+        return quiz.getQuizSubmissions();
+    }
 }
