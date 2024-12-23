@@ -46,6 +46,7 @@ public class QuizController {
         return null;
     }
 
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR')")
     @GetMapping("/quiz/{id}/submissions")
     public List<QuizSubmission> getSubmissions(@PathVariable("id") int id) {
         return quizService.getSubmissions(id);
