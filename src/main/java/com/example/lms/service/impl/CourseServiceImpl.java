@@ -37,6 +37,7 @@ public class CourseServiceImpl implements CourseService {
     public Course addCourse(CourseData course) {
         Instructor instructor = instructorService.getInstructor(course.getInstructorId());
         Course newCourse = new Course(course, instructor);
+        instructor.getCourse().add(newCourse);
         return courseRepo.save(newCourse);
     }
 

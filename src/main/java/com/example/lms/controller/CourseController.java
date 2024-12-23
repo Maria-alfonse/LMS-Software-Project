@@ -26,7 +26,7 @@ public class CourseController {
     private final UserService userService;
 
     @PostMapping("/create")
-    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR')")
     public Course addCourse(@RequestBody CourseData course, HttpServletRequest request){
         String authHeader = request.getHeader("Authorization");
         String token = authHeader.substring(7);
@@ -39,31 +39,37 @@ public class CourseController {
     }
 
     @PostMapping("/{id}/upload_file")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR')")
     public FileEntity uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file) throws IOException {
         return courseService.uploadFile(id, file);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN', 'STUDENT')")
     public Course getCourseById(@PathVariable int id) {
         return courseService.getCourseById(id);
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN', 'STUDENT')")
     public List<Course> getAllCourses() {
         return courseService.getAllCourses();
     }
 
     @PostMapping("/{courseId}/enroll")
+    @PreAuthorize("hasAnyAuthority('STUDENT')")
     public String enrollInCourse(@RequestBody int studentId, @PathVariable int courseId) {
         return courseService.enrollInCourse(studentId, courseId);
     }
 
     @DeleteMapping("/{courseId}/delete")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN')")
     public void deleteCourse(@PathVariable("courseId") int courseId){
         courseService.deleteCourse(courseId);
     }
 
     @PatchMapping("{courseId}/update")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN')")
     public Course updateCourse(@PathVariable int courseId, @RequestBody CourseData courseData){
         return courseService.updateCourse(courseId, courseData);
     }

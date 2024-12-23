@@ -4,6 +4,7 @@ import com.example.lms.model.Notification;
 import com.example.lms.model.user_related.User;
 import com.example.lms.service.NotificationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class NotificationController {
 
 
     @GetMapping("/{userId}")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN', 'STUDENT')")
     public List<Notification> getNotificationsByUser(@PathVariable int userId) {
         User user = new User();
         user.setId(userId);
@@ -32,6 +34,7 @@ public class NotificationController {
         return allNotifications;
     }
     @GetMapping("/{userId}/unread")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN', 'STUDENT')")
     public List<Notification> getUnreadNotificationsByUser(@PathVariable int userId) {
         User user = new User();
         user.setId(userId);
@@ -44,11 +47,13 @@ public class NotificationController {
         return unreadNotifications;
     }
     @PutMapping("/{notificationId}/read")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR', 'ADMIN', 'STUDENT')")
     public void markAsRead(@PathVariable int notificationId) {
         notificationService.markAsRead(notificationId);
     }
 
     @PostMapping("/send")
+    @PreAuthorize("hasAnyAuthority('INSTRUCTOR')")
     public void sendNotification(@RequestParam("userId") int userId, @RequestBody String message) {
         User user = new User();
         user.setId(userId);
