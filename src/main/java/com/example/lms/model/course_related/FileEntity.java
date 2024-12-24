@@ -20,4 +20,12 @@ public class FileEntity {
     @JoinColumn(name = "course_id")
     @JsonIgnore
     private Course course;
+
+    public String getFileName() {
+        return name;
+    }
+
+    public void setFileName(String s) {
+        name=s;
+    }
 }
