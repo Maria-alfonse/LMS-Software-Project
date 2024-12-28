@@ -33,6 +33,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     private final NotificationService notificationService;
 
+    private final EmailService emailService;
+
     @Override
     public Assignment addAssignment(int courseId, Assignment assignment) {
         Course course = courseService.getCourse(courseId);
@@ -108,8 +110,11 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         Student student = as.getStudent();
 
-        notificationService.sendNotification(student, "You have scored " +  grade + " in the Assignment: " + as.getAssignment().getTitle());
+        String text = "You have scored " +  grade + " in the Assignment: " + as.getAssignment().getTitle();
 
+        notificationService.sendNotification(student, text);
+
+        emailService.sendEmail(student.getEmail(), "Your Assignment Score", text);
 
         return new SubmissionResponse(as);
     }

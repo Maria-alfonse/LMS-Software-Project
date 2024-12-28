@@ -58,8 +58,14 @@ public class CourseController {
 
     @PostMapping("/{courseId}/enroll")
     @PreAuthorize("hasAnyAuthority('STUDENT')")
-    public String enrollInCourse(@RequestBody int studentId, @PathVariable int courseId) {
-        return courseService.enrollInCourse(studentId, courseId);
+    public String enrollInCourse(@PathVariable int courseId, HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        String token = authHeader.substring(7);
+        String email = jwtService.extractUserName(token);
+        User user = userService.getUserByEmail(email);
+        if (user == null)
+            return null;
+        return courseService.enrollInCourse(user.getId(), courseId);
     }
 
     @DeleteMapping("/{courseId}/delete")

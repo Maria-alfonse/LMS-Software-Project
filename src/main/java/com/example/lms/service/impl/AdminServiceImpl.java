@@ -70,7 +70,7 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public void updateAdmin(Integer id,Admin updatedAdmin) {
+    public Admin updateAdmin(Integer id,Admin updatedAdmin) {
 //        Optional<Admin> existingAdmin = adminRepo.findByEmail(updatedAdmin.getEmail());
 //        if(existingAdmin.isPresent()) {
 //            throw new IllegalArgumentException("Admin with email"+email+" already exists");
@@ -94,7 +94,7 @@ public class AdminServiceImpl implements AdminService {
         if (updatedAdmin.getPassword() != null)
             existingAdmin.setPassword(updatedAdmin.getPassword());
 
-        adminRepo.save(existingAdmin);
+        return adminRepo.save(existingAdmin);
     }
 
     @Override

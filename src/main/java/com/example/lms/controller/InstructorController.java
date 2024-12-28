@@ -21,8 +21,7 @@ public class InstructorController {
     private final UserService userService;
     private final InstructorService instructorService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping("/add")
@@ -43,8 +42,10 @@ public class InstructorController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PatchMapping("/update/{id}")
     public void updateInstructor(@PathVariable Integer id, @RequestBody Instructor instructor) {
-        String encodedPassword = passwordEncoder.encode(instructor.getPassword());
-        instructor.setPassword(encodedPassword);
+        if(instructor.getPassword() != null){
+            String encodedPassword = passwordEncoder.encode(instructor.getPassword());
+            instructor.setPassword(encodedPassword);
+        }
         instructorService.updateInstructor(id, instructor);
     }
 
@@ -57,8 +58,10 @@ public class InstructorController {
         User user = userService.getUserByEmail(email);
         if (user == null)
             return;
-        String encodedPassword = passwordEncoder.encode(instructor.getPassword());
-        instructor.setPassword(encodedPassword);
+        if(instructor.getPassword() != null){
+            String encodedPassword = passwordEncoder.encode(instructor.getPassword());
+            instructor.setPassword(encodedPassword);
+        }
         Integer id = user.getId();
         instructorService.updateInstructor(id, instructor);
     }

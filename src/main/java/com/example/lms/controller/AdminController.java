@@ -98,9 +98,11 @@ public class AdminController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PatchMapping("/update/{id}")
-    public void updateAdmin(@PathVariable Integer id ,@RequestBody Admin admin, HttpServletRequest request) {
-        String encodedPassword = passwordEncoder.encode(admin.getPassword());
-        admin.setPassword(encodedPassword);
-        adminService.updateAdmin(id,admin);
+    public Admin updateAdmin(@PathVariable Integer id ,@RequestBody Admin admin) {
+        if (admin.getPassword() != null) {
+            String encodedPassword = passwordEncoder.encode(admin.getPassword());
+            admin.setPassword(encodedPassword);
+        }
+        return adminService.updateAdmin(id,admin);
     }
 }

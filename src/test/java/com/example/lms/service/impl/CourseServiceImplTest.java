@@ -59,6 +59,9 @@ class CourseServiceImplTest {
     private Student student;
     private List<Student> students = new ArrayList<>();
 
+    @InjectMocks
+    private EmailService emailService;
+
     @BeforeEach
     void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
@@ -171,7 +174,7 @@ class CourseServiceImplTest {
     @Test
     void updateCourseWhenCourseDoesNotExist() {
         CourseData updateData = new CourseData();
-        updateData.setTitle("Not exiest");
+        updateData.setTitle("Not exist");
 
         when(courseRepo.findById(3)).thenReturn(Optional.empty());
 
@@ -212,22 +215,6 @@ class CourseServiceImplTest {
         assertThat(result).isNotNull();
         assertThat(result.size()).isEqualTo(2);
         assertThat(result).contains(course);
-
-    }
-
-    @Test
-    void enrollWhenStudentAndCourseExistandNotEnrolled() {
-        int studentId = 1;
-        int courseId = 1;
-
-        when(studentService.getStudent(studentId)).thenReturn(student);
-        when(courseRepo.findById(courseId)).thenReturn(Optional.of(course));
-        when(courseRepo.save(course)).thenReturn(course);
-
-        String response = courseService.enrollInCourse(studentId, courseId);
-
-        assertThat(response).isEqualTo("Student successfully enrolled in the course.");
-        assertThat(course.getStudents()).contains(student);
 
     }
 

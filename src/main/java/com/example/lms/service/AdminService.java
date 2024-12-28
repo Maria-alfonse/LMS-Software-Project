@@ -17,7 +17,7 @@ public interface AdminService {
     void deleteAdmin(Integer id);
 
 
-    void updateAdmin(Integer id,Admin admin);
+    Admin updateAdmin(Integer id,Admin admin);
 
 
     List<Admin> getAll();

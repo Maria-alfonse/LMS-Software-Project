@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +31,8 @@ public class CourseServiceImpl implements CourseService {
     private final StudentService studentService;
 
     private final NotificationService notificationService;
+
+    private final EmailService emailService;
 
     @Override
     public Course addCourse(CourseData course) {
@@ -111,10 +112,16 @@ public class CourseServiceImpl implements CourseService {
         course.getStudents().add(student);
         courseRepo.save(course);
 
-        notificationService.sendNotification(student, "You have successfully enrolled in the course: " + course.getTitle());
+        String text = "You have successfully enrolled in the course: " + course.getTitle();
+
+        notificationService.sendNotification(student, text);
+        emailService.sendEmail(student.getEmail(), "Successful Enrollment", text);
 
         Instructor instructor = course.getInstructor();
-        notificationService.sendNotification(instructor, "Student " + student.getName() + " has enrolled in your course: " + course.getTitle());
+        text = "Student " + student.getName() + " has enrolled in your course: " + course.getTitle();
+        notificationService.sendNotification(instructor, text);
+
+        emailService.sendEmail(instructor.getEmail(), "New Student Enrollment", text);
 
         return "Student successfully enrolled in the course.";
     }

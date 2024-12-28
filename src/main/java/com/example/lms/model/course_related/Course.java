@@ -60,7 +60,7 @@ public class Course {
     private List<Quiz> quizzes = new ArrayList<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<FileEntity> files;
+    private List<FileEntity> files = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(

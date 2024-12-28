@@ -24,6 +24,7 @@ public class LessonServiceImpl implements LessonService {
     private final CourseRepo courseRepo;
     private final StudentRepo studentRepo;
     private final NotificationService notificationService;
+    private final EmailService emailService;
 
     public Lesson addLesson(Lesson lesson, int courseId) {
         Course course = courseRepo.findById(courseId).orElse(null);
@@ -40,7 +41,9 @@ public class LessonServiceImpl implements LessonService {
         courseRepo.save(course);
 
         for (Student student : course.getStudents()) {
-            notificationService.sendNotification(student, "A new lesson has been uploaded to Course: " + course.getTitle());
+            String text = "A new lesson has been uploaded to Course: " + course.getTitle();
+            notificationService.sendNotification(student, text);
+            emailService.sendEmail(student.getEmail(), "New Lesson!", text);
         }
 
         return lesson;

@@ -42,8 +42,10 @@ public class StudentController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PatchMapping("/update/{id}")
     public void updateStudent(@PathVariable Integer id, @RequestBody Student student) {
-        String encodedPassword = passwordEncoder.encode(student.getPassword());
+        if(student.getPassword() != null){
+            String encodedPassword = passwordEncoder.encode(student.getPassword());
             student.setPassword(encodedPassword);
+        }
         studentService.updateStudent(id, student);
     }
 
@@ -56,8 +58,10 @@ public class StudentController {
         User user = userService.getUserByEmail(email);
         if (user == null)
             return;
-        String encodedPassword = passwordEncoder.encode(student.getPassword());
-        student.setPassword(encodedPassword);
+        if(student.getPassword() != null){
+            String encodedPassword = passwordEncoder.encode(student.getPassword());
+            student.setPassword(encodedPassword);
+        }
         Integer id = user.getId();
         studentService.updateStudent(id, student);
     }
